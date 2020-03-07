@@ -20,10 +20,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
   }
 
   if (empty($errors)) {
-    $sql = "insert into tweets (content, good, created_at) values (:content, :good, now(),now())";
+    $sql = "insert into tweets (content, created_at) values (:content, :created_at, now(),now())";
     $stmt = $dbh->prepare($sql);
     $stmt->bindParam(":content", $content);
-    $stmt->bindParam(":good", $good);
+    $stmt->bindParam(":created_at", $created_at);
     $stmt->execute();
 
     header('Location: index.php');
@@ -47,31 +47,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     <ul class="error-list">
       <?php foreach ($errors as $error) : ?>
       <li>
-        <?php echo h($errors); ?>
+        <?php echo h($error); ?>
       </li>
       <?php endforeach; ?>
     </ul>
   <?php endif; ?>
   
   <form action="" method="post">
-    <label for="title">ツイート内容</label><br>
-    <textarea name="title" id="" cols="50" rows="10" placeholder="いまどうしてる？"></textarea>
+    <label for="content">ツイート内容</label><br>
+      <textarea name="content" id="" cols="50" rows="10" placeholder="いまどうしてる？"></textarea>
+    <p><input type="submit" value="投稿する"></p>
   </form>
-  <p><input type="submit" value="投稿する"></p>
 
 
 
   <h2>Tweet一覧</h2>
   <?php if (count($tweets)) : ?>
-  <ul class="tweet-list">
-    <?php foreach ($tweets as $tweet): ?>
-      <li>
-        <a href="show.php?id=<?php echo h($tweet['content']); ?>"></a><br>
-        投稿日時:<?php echo h($tweet['created_at']); ?>
-        <hr>
-      </li>
-    <?php endforeach; ?>
-  </ul>
+    <ul class="tweet-list">
+      <?php foreach ($tweets as $tweet): ?>
+        <li>
+          <a href="show.php?id=<?php echo h($tweet['id'])?>"><?php echo h($tweet['content']); ?></a><br>
+          投稿日時:<?php echo h($tweet['created_at']); ?>
+          <hr>
+        </li>
+      <?php endforeach; ?>
+    </ul>
   <?php else : ?>
   <p>投稿されたTweetはありません</p>
   <?php endif; ?>
