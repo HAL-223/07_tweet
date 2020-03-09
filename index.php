@@ -20,10 +20,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
   }
 
   if (empty($errors)) {
-    $sql = "insert into tweets (content, created_at) values (:content, :created_at, now(),now())";
+    $sql = "insert into tweets (content, created_at) values (:content, now())";
     $stmt = $dbh->prepare($sql);
     $stmt->bindParam(":content", $content);
-    $stmt->bindParam(":created_at", $created_at);
+    // $stmt->bindParam(":created_at", $created_at);
     $stmt->execute();
 
     header('Location: index.php');
@@ -66,7 +66,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     <ul class="tweet-list">
       <?php foreach ($tweets as $tweet): ?>
         <li>
-          <a href="show.php?id=<?php echo h($tweet['id'])?>"><?php echo h($tweet['content']); ?></a><br>
+          <a href="show.php?id=<?php echo h($tweet['id']); ?>">
+          <?php echo h($tweet['content']); ?>
+          </a><br>
           投稿日時:<?php echo h($tweet['created_at']); ?>
           <hr>
         </li>

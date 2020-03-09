@@ -32,7 +32,7 @@ $post = $stmt->fetch(PDO::FETCH_ASSOC);
   <form action="" method="post">
     <p>
       <label for="content">本文</label><br>
-      <textarea name="content" id="" cols="50" rows="10"><?php echo h($tweet ['content']); ?></textarea>
+        <textarea name="content" id="" cols="50" rows="10"><?php echo h($tweet ['content']); ?></textarea>
     </p>
     <p><input type="submit" value="編集する"></p>
   </form>
