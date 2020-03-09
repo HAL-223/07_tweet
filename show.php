@@ -12,12 +12,8 @@ $stmt = $dbh->prepare($sql);
 $stmt->bindParam(":id", $id);
 $stmt->execute();
 
-$post = $stmt->fetch(PDO::FETCH_ASSOC);
+$tweet = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if (!$tweet) {
-  header('Location: index.php');
-  exit;
-}
 
 ?>
 
@@ -35,7 +31,7 @@ if (!$tweet) {
   <ul class="tweet-list">
     <li>
       [#<?php echo h($tweet['id']); ?>]
-      @<?php echo h($tweet['content']); ?><br>
+      <?php echo h($tweet['content']); ?><br>
       投稿日時: <?php echo h($tweet['created_at']); ?>
       <a href="edit.php?id=<?php echo h($post['id']); ?>">[編集]</a>
       <a href="delete.php?id=<?php echo h($post['id']); ?>">[削除]</a>

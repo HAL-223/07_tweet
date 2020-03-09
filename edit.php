@@ -12,8 +12,10 @@ $stmt = $dbh->prepare($sql);
 $stmt->bindParam(":id", $id);
 $stmt->execute();
 
-$post = $stmt->fetch(PDO::FETCH_ASSOC);
+$tweet = $stmt->fetch(PDO::FETCH_ASSOC);
 
+// header('Location: index.php');
+// exit;
 
 ?>
 
