@@ -28,4 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 $stmt = $dbh->prepare($sql);
 $stmt->bindParam(":id", $id);
 $stmt->execute();
-?>
+
+header('Location: index.php');
+exit;

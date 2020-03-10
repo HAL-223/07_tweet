@@ -70,9 +70,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
           <?php echo h($tweet['content']); ?>
           </a><br>
           投稿日時:<?php echo h($tweet['created_at']); ?>
-          <a href="good.php&id=1&good=true">"★"</a>
-          <a href="good.php&id=1&good=false">☆</a>
-          <hr>
+          <?php if(good == true) : ?>
+            <a href="good.php?id=<?php echo h($tweet['id']) . "&good=1"; ?>" class="good-link"><?php echo '☆'; ?></a>  
+          <?php else : ?>
+            <a href="good.php?id=<?php echo h($tweet['id']) . "&good=0"; ?>" class="bad-link"><?php echo '★'; ?></a>
+            <hr>
+          <?php endif; ?>
         </li>
       <?php endforeach; ?>
     </ul>
