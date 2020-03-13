@@ -1,4 +1,3 @@
-いいね機能
 <?php
 
 require_once('config.php');
@@ -27,7 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
 $stmt = $dbh->prepare($sql);
 $stmt->bindParam(":id", $id);
+$stmt->bindParam(":good", $good);
 $stmt->execute();
 
 header('Location: index.php');
 exit;
+}
