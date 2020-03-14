@@ -5,16 +5,16 @@ require_once('config.php');
 require_once('functions.php');
 
 $id = $_GET['id'];
+
 $dbh = connectDb();
 $sql = "select * from tweets where id = :id";
 $stmt = $dbh->prepare($sql);
 $stmt->bindParam(":id", $id);
 $stmt->execute();
 
-$post = $stmt->fetch();
+$tweet = $stmt->fetch();
 
-if (!$tweet)
-{
+if (!$tweet) {
   header('Location: index.php');
   exit;
 }

@@ -39,8 +39,8 @@ $tweet = $stmt->fetch(PDO::FETCH_ASSOC);
           <?php else : ?>
             <a href="good.php?id=<?php echo h($tweet['id']) . "&good=0"; ?>" class="good-link"><?php echo '★'; ?></a>
             <?php endif; ?>
-      <a href="edit.php?id=<?php echo h($post['id']); ?>">[編集]</a>
-      <a href="delete.php?id=<?php echo h($post['id']); ?>">[削除]</a>
+      <a href="edit.php?id=<?php echo h($tweet['id']); ?>">[編集]</a>
+      <a href="delete.php?id=<?php echo h($tweet['id']); ?>">[削除]</a>
     </li>
   </ul>
 </body>

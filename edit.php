@@ -7,7 +7,7 @@ require_once('functions.php');
 $id = $_GET['id'];
 
 $dbh = connectDb();
-$sql  = "select * from tweets where id = :id";
+$sql = "select * from tweets where id = :id";
 $stmt = $dbh->prepare($sql);
 $stmt->bindParam(":id", $id);
 $stmt->execute();
@@ -21,8 +21,8 @@ if (!$tweet) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $content= $_POST['content'];
-  
   $errors = [];
+
   if ($content == '') {
     $errors['content'] = 'ツイート内容が未入力です';
   }
@@ -32,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   if (empty($errors)) {
+    $dbh = connectDb();
     $sql = "update tweets set content = :content, created_at = now() where id = :id";
     $stmt = $dbh->prepare($sql);
     $stmt->bindParam(":id", $id);
