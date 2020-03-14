@@ -29,6 +29,7 @@ $stmt->bindParam(":id", $id);
 $stmt->bindParam(":good", $good);
 $stmt->execute();
 
-header('Location: index.php');
+$url = $_SERVER['HTTP_REFERER'];
+header('Location:' . $url);
 exit;
 }

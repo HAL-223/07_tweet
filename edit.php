@@ -14,8 +14,10 @@ $stmt->execute();
 
 $tweet = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// header('Location: index.php');
-// exit;
+if (!$tweet) {
+  header('Location: index.php');
+  exit;
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $content= $_POST['content'];
@@ -30,13 +32,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   if (empty($errors)) {
-    $sql = "update tweets set content = :content, where id = :id";
+    $sql = "update tweets set content = :content, created_at = now() where id = :id";
     $stmt = $dbh->prepare($sql);
     $stmt->bindParam(":id", $id);
     $stmt->bindParam(":content", $content);
     $stmt->execute();
   }
-
 }
 
 ?>
