@@ -1,4 +1,3 @@
-<!-- 記事編集ページ -->
 <?php
 
 require_once('config.php');
@@ -24,11 +23,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $errors = [];
 
   if ($content == '') {
-    $errors['content'] = 'ツイート内容が未入力です';
+    $errors['content'] = '入力がされていません。';
   }
 
   if ($content === $tweet['content']) {
-    $errors['content'] = '変更されておりません';
+    $errors['content'] = '内容が変更されておりません';
   }
 
   if (empty($errors)) {
@@ -72,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <form action="" method="post">
     <p>
       <label for="content">本文</label><br>
-        <textarea name="content" id="" cols="50" rows="10" value="<?php echo h($tweet['content']); ?>"></textarea>
+        <textarea name="content" id="" cols="50" rows="10"><?php echo h($tweet['content']); ?></textarea>
     </p>
     <p><input type="submit" value="編集する"></p>
   </form>

@@ -1,5 +1,4 @@
 <?php
-// 設定ファイル
 // 接続に必要な情報を定数として定義
 define('DSN', 'mysql:host=mysql;dbname=camp_tweet;charset=utf8');
 define('DB_USER', 'admin_user');
