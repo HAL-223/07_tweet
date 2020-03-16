@@ -38,6 +38,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bindParam(":id", $id);
     $stmt->bindParam(":content", $content);
     $stmt->execute();
+    
+    header('Location: index.php');
+    exit;
   }
 }
 
