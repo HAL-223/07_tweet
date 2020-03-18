@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
   <form action="" method="post">
     <label for="content">ツイート内容</label><br>
       <textarea name="content" id="" cols="50" rows="10" placeholder="いまどうしてる？"></textarea>
-    <p><input type="submit" value="投稿する"></p>
+      <p><input type="submit" value="投稿する"></p>
   </form>
 
 
@@ -74,13 +74,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
             <a href="good.php?id=<?php echo h($tweet['id']) . "&good=1"; ?>" class="bad-link"><?php echo '☆'; ?></a>  
           <?php else : ?>
             <a href="good.php?id=<?php echo h($tweet['id']) . "&good=0"; ?>" class="good-link"><?php echo '★'; ?></a>
-            <?php endif; ?>
-          </li>
-          <hr>
+          <?php endif; ?>
+        </li>
+        <hr>
       <?php endforeach; ?>
     </ul>
   <?php else : ?>
-  <p>投稿されたTweetはありません</p>
+    <p>投稿されたTweetはありません</p>
   <?php endif; ?>
 </body>
 </html>
